@@ -44,20 +44,22 @@ var saveTasks = function() {
   localStorage.setItem("tasks", JSON.stringify(tasks));
 };
 
+// task text was clicked
 $(".list-group").on("click", "p", function() {
+  // get current text of p element
   var text = $(this)
   .text()
   .trim();
 
-  var textInput = $("<textarea>")
-  .addClass("form-control")
-  .val(text);
-  
+  // replace p element with new textarea
+  var textInput = $("<textarea>").addClass("form-control").val(text);
   $(this).replaceWith(textInput);
 
+  // auto focus new element 
   textInput.trigger("focus");
 });
 
+// editable field was un-focused
 $(".list-group").on("blur", "textarea", function() {
   // get the textarea's current value/text
   var test = $(this)
@@ -113,8 +115,7 @@ $(".list-group").on("click", "span", function() {
 $(".list-group").on("blur", "input[type='text']", function() {
   // get current text
   var date = $(this)
-    .val()
-    .trim();
+    .val();
 
   // get the parent ul's id attribute
   var status = $(this)
